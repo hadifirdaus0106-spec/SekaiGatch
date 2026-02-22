@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>✨ Isekai Nusantara · Aggre To Isekai ✨</title>
-<!-- Font Awesome -->
+<!-- Font Awesome 6 (Free) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -32,11 +32,11 @@ transition: background 1.5s ease;
 }
 
 body.isekai-mode {
-background: radial-gradient(ellipse at top, #4a1a3a, #1a0a2a);
+background: radial-gradient(ellipse at top, #2a0a2a, #0a0a2a);
 }
 
 body.isekai-mode .card {
-box-shadow: 0 30px 60px rgba(200, 0, 255, 0.4), 0 0 0 2px #ff6ae2 inset, 0 0 50px #c300ff;
+box-shadow: 0 30px 60px rgba(150, 0, 255, 0.5), 0 0 0 2px #c86bff inset, 0 0 80px #8a2be2;
 }
 
 /* Motif batik parang sederhana di background */
@@ -108,49 +108,68 @@ background: radial-gradient(circle at center, transparent 0%, #000 100%);
 pointer-events: none;
 z-index: 9997;
 opacity: 0;
-transition: opacity 0.5s ease;
+transition: opacity 0.8s ease;
 }
 
 .portal-overlay.active {
-opacity: 0.8;
+opacity: 0.9;
 }
 
-.portal-ring {
+/* Portal spiral yang lebih halus */
+.portal-spiral {
 position: fixed;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%) scale(0);
-width: 300px;
-height: 300px;
+width: 500px;
+height: 500px;
 border-radius: 50%;
-background: conic-gradient(from 0deg, #ff3366, #ffcc00, #33ccff, #ff3366);
-box-shadow: 0 0 100px #ffaa33;
+background: conic-gradient(from 0deg, #ff3366, #ffcc00, #33ccff, #aa44ff, #ff3366);
+box-shadow: 0 0 150px #aa44ff, 0 0 300px #ff3366;
 z-index: 9998;
 pointer-events: none;
-animation: portalSpin 2s linear infinite;
 opacity: 0;
-transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+transition: opacity 0.5s ease;
+animation: spiralSpin 3s linear infinite;
+filter: blur(2px);
 }
 
-.portal-ring.active {
-opacity: 0.7;
+.portal-spiral.active {
+opacity: 0.8;
 transform: translate(-50%, -50%) scale(2);
 }
 
-@keyframes portalSpin {
-0% { transform: translate(-50%, -50%) scale(2) rotate(0deg); }
-100% { transform: translate(-50%, -50%) scale(2) rotate(360deg); }
+@keyframes spiralSpin {
+0% { transform: translate(-50%, -50%) scale(2) rotate(0deg); filter: blur(2px); }
+50% { transform: translate(-50%, -50%) scale(2.2) rotate(180deg); filter: blur(3px); }
+100% { transform: translate(-50%, -50%) scale(2) rotate(360deg); filter: blur(2px); }
 }
 
-/* Spell effect container */
-.spell-effect {
+/* Portal partikel kecil (spiral dots) */
+.portal-dots {
 position: fixed;
-pointer-events: none;
-z-index: 9999;
-width: 100%;
-height: 100%;
 top: 0;
 left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9996;
+}
+
+.portal-dot {
+position: absolute;
+width: 4px;
+height: 4px;
+background: radial-gradient(circle, #fff, #ffaa33);
+border-radius: 50%;
+box-shadow: 0 0 10px currentColor;
+animation: dotSpiral 2s linear infinite;
+opacity: 0;
+}
+
+@keyframes dotSpiral {
+0% { transform: rotate(0deg) translateY(-150px) rotate(0deg); opacity: 1; }
+100% { transform: rotate(360deg) translateY(-150px) rotate(-360deg); opacity: 0; }
 }
 
 .card {
@@ -223,85 +242,118 @@ flex-wrap: wrap;
 margin: 1.5rem 0 2rem;
 }
 
-/* Tombol Isekai yang ditingkatkan */
+/* TOMBOL FINGERPRINT ISEKAI - Harus ditempel jempol */
 .isekai-btn {
 border: none;
-border-radius: 60px;
-padding: 1.2rem 2.5rem;
-font-size: 1.8rem;
-font-weight: 800;
-color: #fff2d4;
-text-shadow: 0 2px 10px #ff00aa, 0 0 20px #ffaa33;
+border-radius: 100px;
+padding: 1.5rem 3rem;
+font-size: 2rem;
+font-weight: 900;
+color: #fff8e7;
+text-shadow: 0 0 20px #ffaa33, 0 0 40px #ff44aa;
 cursor: pointer;
-box-shadow: 0 20px 30px -5px #000, 0 0 30px #ff6b4a, 0 0 0 2px #ffaa33 inset;
-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-border: 2px solid transparent;
-background: linear-gradient(145deg, #a03d1a, #642a0e);
+box-shadow: 0 20px 40px -5px #000, 0 0 50px #ff44aa, 0 0 0 4px #ffaa33 inset;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+border: 3px solid transparent;
+background: linear-gradient(145deg, #3a1a0a, #1a0a1a);
 display: inline-flex;
+flex-direction: column;
 align-items: center;
-gap: 1rem;
+gap: 0.8rem;
 position: relative;
-overflow: hidden;
+overflow: visible;
 z-index: 10;
-animation: isekaiBtnPulse 2s infinite alternate;
+animation: fingerprintPulse 2.5s infinite alternate;
+transform-origin: center;
+letter-spacing: 2px;
+min-width: 280px;
 }
 
-@keyframes isekaiBtnPulse {
-0% { box-shadow: 0 20px 30px -5px #000, 0 0 30px #ff6b4a, 0 0 0 2px #ffaa33 inset; transform: scale(1); }
-100% { box-shadow: 0 20px 40px -5px #ff00aa, 0 0 50px #ffaa33, 0 0 0 4px #ff6b4a inset; transform: scale(1.02); }
+/* Efek sidik jari di dalam tombol */
+.isekai-btn .fingerprint-icon {
+position: relative;
+width: 80px;
+height: 80px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-.isekai-btn::before {
-content: '';
+.isekai-btn .fingerprint-icon i {
+font-size: 4rem;
+background: linear-gradient(135deg, #fff, #ffaa33);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+filter: drop-shadow(0 0 20px #ff44aa);
+animation: fingerprintGlow 2s infinite alternate;
+}
+
+/* Lingkaran riak seperti sensor sidik jari */
+.isekai-btn .ripple-circle {
 position: absolute;
 top: 50%;
 left: 50%;
-width: 0;
-height: 0;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 170, 51, 0.4) 70%);
 transform: translate(-50%, -50%);
-transition: width 0.6s, height 0.6s;
-z-index: -1;
-}
-
-.isekai-btn:active::before {
-width: 400px;
-height: 400px;
-}
-
-.isekai-btn i {
-font-size: 2rem;
-animation: iconFloat 1.5s infinite alternate;
-}
-
-@keyframes iconFloat {
-0% { transform: translateY(0) rotate(0deg); }
-100% { transform: translateY(-5px) rotate(5deg); }
-}
-
-/* Efek saat tombol ditekan (portal) */
-.isekai-btn.portal-pressed {
-animation: portalPress 0.5s forwards;
-}
-
-@keyframes portalPress {
-0% { transform: scale(1); box-shadow: 0 0 50px #ffaa33; }
-50% { transform: scale(0.9); box-shadow: 0 0 100px #ff00aa; }
-100% { transform: scale(1.1); box-shadow: 0 0 150px #ffaa33; }
-}
-
-/* Efek partikel tambahan untuk tombol */
-.isekai-btn .btn-particle {
-position: absolute;
-width: 10px;
-height: 10px;
-background: radial-gradient(circle, #fff, #ffaa33);
+width: 100px;
+height: 100px;
 border-radius: 50%;
-pointer-events: none;
-opacity: 0;
+border: 2px solid rgba(255, 170, 51, 0.5);
+animation: ripple 2s infinite;
 }
 
+.isekai-btn .ripple-circle:nth-child(2) {
+width: 120px;
+height: 120px;
+animation: ripple 2s infinite 0.5s;
+}
+
+.isekai-btn .ripple-circle:nth-child(3) {
+width: 140px;
+height: 140px;
+animation: ripple 2s infinite 1s;
+}
+
+@keyframes ripple {
+0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); border-width: 2px; }
+100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); border-width: 1px; }
+}
+
+@keyframes fingerprintGlow {
+0% { filter: drop-shadow(0 0 10px #ff44aa); text-shadow: 0 0 20px #ffaa33; }
+100% { filter: drop-shadow(0 0 30px #ff88ff); text-shadow: 0 0 40px #ff44aa; }
+}
+
+@keyframes fingerprintPulse {
+0% { box-shadow: 0 20px 40px -5px #000, 0 0 50px #ff44aa, 0 0 0 4px #ffaa33 inset; transform: scale(1); }
+100% { box-shadow: 0 30px 60px -5px #ff88ff, 0 0 80px #ffaa33, 0 0 0 6px #ffaa33 inset; transform: scale(1.02); }
+}
+
+/* Efik "sedang memindai" */
+.isekai-btn.scanning {
+animation: scanningVibrate 0.2s infinite;
+}
+
+@keyframes scanningVibrate {
+0% { transform: translate(0, 0); }
+25% { transform: translate(-2px, 1px); }
+50% { transform: translate(2px, -1px); }
+75% { transform: translate(-1px, -2px); }
+100% { transform: translate(1px, 2px); }
+}
+
+/* Efek berhasil - centang */
+.isekai-btn.verified {
+background: linear-gradient(145deg, #2a5a2a, #1a3a1a);
+box-shadow: 0 0 100px #44ff44, 0 0 0 8px #aaffaa inset;
+}
+
+.isekai-btn.verified .fingerprint-icon i {
+background: linear-gradient(135deg, #aaffaa, #44ff44);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+/* Tombol detail biasa */
 .detail-btn {
 border: none;
 border-radius: 60px;
@@ -341,9 +393,8 @@ height: 300px;
 }
 
 .isekai-btn:hover {
-transform: scale(1.05) rotate(1deg);
-box-shadow: 0 20px 40px -5px #ff00aa, 0 0 60px #ffaa33, 0 0 0 3px #ffaa33 inset;
-background: linear-gradient(145deg, #c45123, #8a3b17);
+transform: scale(1.05);
+box-shadow: 0 30px 60px -5px #ff88ff, 0 0 100px #ffaa33, 0 0 0 8px #ffaa33 inset;
 }
 
 .detail-btn:hover {
@@ -397,13 +448,14 @@ transition: all 0.5s ease;
 }
 
 .character-container.isekai-enter {
-animation: isekaiEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+animation: isekaiSpiralEnter 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.1);
 }
 
-@keyframes isekaiEnter {
-0% { opacity: 0; transform: scale(0.8) rotate(-5deg); filter: blur(10px); }
-50% { opacity: 0.5; transform: scale(1.1) rotate(2deg); filter: blur(0); }
-100% { opacity: 1; transform: scale(1) rotate(0); }
+@keyframes isekaiSpiralEnter {
+0% { opacity: 0; transform: scale(0.2) rotate(-180deg); filter: blur(20px) hue-rotate(90deg); }
+30% { opacity: 0.7; transform: scale(1.1) rotate(10deg); filter: blur(5px) hue-rotate(0deg); }
+70% { opacity: 0.9; transform: scale(0.98) rotate(-2deg); filter: blur(0); }
+100% { opacity: 1; transform: scale(1) rotate(0); filter: blur(0); }
 }
 
 @keyframes containerPulse {
@@ -687,46 +739,77 @@ gap: 0.5rem 1rem;
 margin-top: 0.8rem;
 }
 
-/* Item chip dengan ikon lebih spesifik */
+/* Item chip dengan ikon premium */
 .item-chip {
 background: #3f2c19;
 border-radius: 30px;
-padding: 0.3rem 1.2rem;
+padding: 0.4rem 1.2rem;
 font-size: 0.9rem;
 border: 1px solid #b7772e;
 color: #f0dbb4;
 display: inline-flex;
 align-items: center;
-gap: 8px;
+gap: 10px;
 transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position: relative;
+overflow: hidden;
+}
+
+.item-chip::before {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+background: linear-gradient(45deg, #ffaa33, #ff6b6b, #8a2be2);
+border-radius: 32px;
+z-index: -1;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.item-chip:hover::before {
+opacity: 0.5;
 }
 
 .item-chip:hover {
-transform: rotate(3deg) scale(1.1) translateY(-3px);
-border-color: #ffaa33;
-box-shadow: 0 10px 20px #ffaa33;
+transform: rotate(2deg) scale(1.1) translateY(-5px);
+border-color: transparent;
+box-shadow: 0 15px 30px rgba(255, 170, 51, 0.5);
 }
 
-/* Ikon item spesifik dengan warna */
+/* Ikon item premium dengan efek 3D */
 .item-chip i {
-font-size: 1.1rem;
-filter: drop-shadow(0 0 3px currentColor);
+font-size: 1.3rem;
+filter: drop-shadow(0 0 5px currentColor);
+transition: all 0.3s ease;
 }
 
-/* Warna ikon berdasarkan tipe item */
-.item-chip[data-type*="Sword"] i { color: #ff6b6b; }
-.item-chip[data-type*="Axe"] i { color: #ff8c42; }
-.item-chip[data-type*="Bow"] i { color: #6b8cff; }
-.item-chip[data-type*="Shield"] i { color: #4aa3ff; }
-.item-chip[data-type*="Helmet"] i { color: #b4b4b4; }
-.item-chip[data-type*="Chestplate"] i { color: #b87333; }
-.item-chip[data-type*="Boots"] i { color: #8b6b4a; }
-.item-chip[data-type*="Ring"] i { color: #ffd966; }
-.item-chip[data-type*="Amulet"] i { color: #c06bff; }
-.item-chip[data-type*="Staff"] i { color: #8b5a2b; }
-.item-chip[data-type*="Wand"] i { color: #9b6bff; }
-.item-chip[data-type*="Dagger"] i { color: #c0c0c0; }
-.item-chip[data-type*="Spear"] i { color: #cd7f32; }
+.item-chip:hover i {
+transform: scale(1.2) rotate(5deg);
+filter: drop-shadow(0 0 15px currentColor);
+}
+
+/* Warna ikon berdasarkan tipe item - lebih kaya */
+.item-chip[data-type*="Sword"] i { color: #ff6b6b; text-shadow: 0 0 10px #ff0000; }
+.item-chip[data-type*="Axe"] i { color: #ff8c42; text-shadow: 0 0 10px #ff5500; }
+.item-chip[data-type*="Bow"] i { color: #6b8cff; text-shadow: 0 0 10px #0044ff; }
+.item-chip[data-type*="Shield"] i { color: #4aa3ff; text-shadow: 0 0 10px #00aaff; }
+.item-chip[data-type*="Helmet"] i { color: #b4b4b4; text-shadow: 0 0 10px #ffffff; }
+.item-chip[data-type*="Chestplate"] i { color: #b87333; text-shadow: 0 0 10px #ff8800; }
+.item-chip[data-type*="Boots"] i { color: #8b6b4a; text-shadow: 0 0 10px #aa5500; }
+.item-chip[data-type*="Ring"] i { color: #ffd966; text-shadow: 0 0 10px #ffaa00; }
+.item-chip[data-type*="Amulet"] i { color: #c06bff; text-shadow: 0 0 10px #aa00ff; }
+.item-chip[data-type*="Staff"] i { color: #8b5a2b; text-shadow: 0 0 10px #aa4400; }
+.item-chip[data-type*="Wand"] i { color: #9b6bff; text-shadow: 0 0 10px #7700ff; }
+.item-chip[data-type*="Dagger"] i { color: #c0c0c0; text-shadow: 0 0 10px #ffffff; }
+.item-chip[data-type*="Spear"] i { color: #cd7f32; text-shadow: 0 0 10px #ffaa00; }
+.item-chip[data-type*="Gauntlets"] i { color: #a52a2a; text-shadow: 0 0 10px #ff3300; }
+.item-chip[data-type*="Cloak"] i { color: #4a6b8f; text-shadow: 0 0 10px #0066ff; }
+.item-chip[data-type*="Crown"] i { color: #ffbf00; text-shadow: 0 0 10px #ffaa00; }
+.item-chip[data-type*="Orb"] i { color: #9b30ff; text-shadow: 0 0 10px #aa00ff; }
+.item-chip[data-type*="Tome"] i { color: #d4af37; text-shadow: 0 0 10px #ffaa00; }
 
 .infinity-badge {
 background: linear-gradient(145deg, #ffd966, #f2b807);
@@ -862,7 +945,7 @@ padding: 2rem;
 color: #f7bc6b;
 }
 
-/* Canvas untuk spell effects (visual saja) */
+/* Canvas untuk spell effects */
 #spellCanvas {
 position: fixed;
 top: 0;
@@ -870,37 +953,25 @@ left: 0;
 width: 100%;
 height: 100%;
 pointer-events: none;
-z-index: 9998;
+z-index: 9995;
 }
 
-/* Portal dan elemen isekai */
+/* Portal glow */
 .portal-glow {
 position: fixed;
 top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 170, 51, 0.3) 0%, transparent 60%);
+background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(170, 68, 255, 0.4) 0%, transparent 70%);
 pointer-events: none;
-z-index: 9996;
+z-index: 9994;
 opacity: 0;
 transition: opacity 0.3s ease;
 }
 
 .portal-glow.active {
 opacity: 1;
-}
-
-/* Partikel tambahan untuk efek isekai */
-.isekai-particle {
-position: fixed;
-width: 4px;
-height: 4px;
-background: radial-gradient(circle, #fff, #ffaa33);
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-opacity: 0;
 }
 
 /* Hapus semua kontrol dan elemen audio */
@@ -913,13 +984,14 @@ display: none !important;
 
 <!-- Portal overlay elements -->
 <div class="portal-overlay" id="portalOverlay"></div>
-<div class="portal-ring" id="portalRing"></div>
+<div class="portal-spiral" id="portalSpiral"></div>
 <div class="portal-glow" id="portalGlow"></div>
+<div class="portal-dots" id="portalDots"></div>
 
 <!-- Particles container -->
 <div id="particles-js"></div>
 
-<!-- Canvas untuk spell effects (hanya visual) -->
+<!-- Canvas untuk spell effects -->
 <canvas id="spellCanvas"></canvas>
 
 <!-- Floating decorative elements -->
@@ -933,7 +1005,16 @@ display: none !important;
 
 <!-- Tombol navigasi -->
 <div class="btn-group">
-<button class="isekai-btn" id="isekaiBtn"><i class="fas fa-portal"></i> Aggre To Isekai <i class="fas fa-arrow-right"></i></button>
+<button class="isekai-btn" id="isekaiBtn">
+<div class="fingerprint-icon">
+<i class="fas fa-fingerprint"></i>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+</div>
+<span>Tempel Jempol untuk Isekai</span>
+<i class="fas fa-arrow-right"></i>
+</button>
 <button class="detail-btn" id="detailBtn"><i class="fas fa-book-open"></i> Rincian & Penjelasan</button>
 </div>
 
@@ -1088,10 +1169,11 @@ display: none !important;
 
 <script>
 (function() {
-// ========== SPELL EFFECT CANVAS (VISUAL ONLY, NO AUDIO) ==========
+// ========== SPELL EFFECT CANVAS (OPTIMIZED) ==========
 const canvas = document.getElementById('spellCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
+const MAX_PARTICLES = 200;
 
 function resizeCanvas() {
 canvas.width = window.innerWidth;
@@ -1104,9 +1186,9 @@ class SpellParticle {
 constructor(x, y, color) {
 this.x = x;
 this.y = y;
-this.vx = (Math.random() - 0.5) * 8;
-this.vy = (Math.random() - 0.5) * 8;
-this.size = Math.random() * 4 + 2;
+this.vx = (Math.random() - 0.5) * 6;
+this.vy = (Math.random() - 0.5) * 6;
+this.size = Math.random() * 3 + 1;
 this.color = color;
 this.life = 1;
 this.decay = 0.01 + Math.random() * 0.02;
@@ -1115,91 +1197,83 @@ this.decay = 0.01 + Math.random() * 0.02;
 update() {
 this.x += this.vx;
 this.y += this.vy;
-this.vy += 0.05; // gentle gravity
+this.vy += 0.02;
 this.life -= this.decay;
 }
 
 draw() {
-ctx.globalAlpha = this.life;
+ctx.globalAlpha = this.life * 0.8;
 ctx.beginPath();
 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 ctx.fillStyle = this.color;
 ctx.fill();
-
-// Add glow effect
 ctx.shadowColor = this.color;
-ctx.shadowBlur = 15;
+ctx.shadowBlur = 10;
 ctx.fill();
 ctx.shadowBlur = 0;
 }
 }
 
-function createSpellEffect(x, y, color, count = 15) {
-for (let i = 0; i < count; i++) {
+function createSpellEffect(x, y, color, count = 12) {
+if (particles.length > MAX_PARTICLES) return;
+const newCount = Math.min(count, MAX_PARTICLES - particles.length);
+for (let i = 0; i < newCount; i++) {
 particles.push(new SpellParticle(x, y, color));
 }
 }
 
 function animateSpells() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 for (let i = particles.length - 1; i >= 0; i--) {
 particles[i].update();
 particles[i].draw();
-
-if (particles[i].life <= 0) {
-particles.splice(i, 1);
+if (particles[i].life <= 0) particles.splice(i, 1);
 }
-}
-
 requestAnimationFrame(animateSpells);
 }
 animateSpells();
 
-// ========== EFEK PORTAL ISEKAI ==========
+// ========== EFEK PORTAL SPIRAL HALUS ==========
 const portalOverlay = document.getElementById('portalOverlay');
-const portalRing = document.getElementById('portalRing');
+const portalSpiral = document.getElementById('portalSpiral');
 const portalGlow = document.getElementById('portalGlow');
+const portalDots = document.getElementById('portalDots');
 const body = document.body;
 
-function triggerIsekaiPortal() {
-// Aktifkan efek portal
-portalOverlay.classList.add('active');
-portalRing.classList.add('active');
-portalGlow.classList.add('active');
-body.classList.add('isekai-mode');
-
-// Update posisi glow mengikuti mouse
-document.addEventListener('mousemove', function(e) {
-portalGlow.style.setProperty('--x', e.clientX + 'px');
-portalGlow.style.setProperty('--y', e.clientY + 'px');
-});
-
-// Buat partikel tambahan di sekitar tombol
-const btn = document.getElementById('isekaiBtn');
-const rect = btn.getBoundingClientRect();
-const centerX = rect.left + rect.width/2;
-const centerY = rect.top + rect.height/2;
-
-// Ledakan partikel besar
+function createPortalDots() {
+portalDots.innerHTML = '';
 for (let i = 0; i < 30; i++) {
-setTimeout(() => {
-createSpellEffect(
-centerX + (Math.random() - 0.5) * 200,
-centerY + (Math.random() - 0.5) * 200,
-`hsl(${Math.random() * 60 + 300}, 100%, 60%)`,
-1
-);
-}, i * 20);
+const dot = document.createElement('div');
+dot.className = 'portal-dot';
+dot.style.animationDelay = `${i * 0.1}s`;
+dot.style.left = '50%';
+dot.style.top = '50%';
+dot.style.transform = `rotate(${i * 12}deg) translateY(-150px)`;
+portalDots.appendChild(dot);
+}
 }
 
-// Matikan efek setelah beberapa detik
+function triggerIsekaiPortal() {
+portalOverlay.classList.add('active');
+portalSpiral.classList.add('active');
+portalGlow.classList.add('active');
+body.classList.add('isekai-mode');
+createPortalDots();
+
+const mouseHandler = (e) => {
+portalGlow.style.setProperty('--x', e.clientX + 'px');
+portalGlow.style.setProperty('--y', e.clientY + 'px');
+};
+document.addEventListener('mousemove', mouseHandler);
+
 setTimeout(() => {
 portalOverlay.classList.remove('active');
-portalRing.classList.remove('active');
+portalSpiral.classList.remove('active');
 portalGlow.classList.remove('active');
 body.classList.remove('isekai-mode');
-}, 1500);
+document.removeEventListener('mousemove', mouseHandler);
+portalDots.innerHTML = '';
+}, 1800);
 }
 
 // ========== NAMA INDONESIA dengan gender spesifik ==========
@@ -1248,14 +1322,31 @@ const itemTypes = [
 "Belt", "Greaves", "Pauldrons", "Crown", "Orb", "Tome", "Quiver", "Arrow"
 ];
 
-// Ikon mapping untuk setiap tipe item (lebih spesifik)
 const itemIconMap = {
-"Helmet": "fa-helmet-battle", "Chestplate": "fa-tshirt", "Gauntlets": "fa-hand-fist", "Boots": "fa-shoe-prints",
-"Shield": "fa-shield-halved", "Sword": "fa-sword", "Axe": "fa-axe", "Bow": "fa-bow-arrow",
-"Staff": "fa-staff-snake", "Dagger": "fa-knife", "Spear": "fa-pitchfork", "Wand": "fa-wand-sparkles",
-"Ring": "fa-ring", "Amulet": "fa-gem", "Cloak": "fa-cloak", "Gloves": "fa-hand",
-"Belt": "fa-belt", "Greaves": "fa-shield", "Pauldrons": "fa-shield", "Crown": "fa-crown",
-"Orb": "fa-circle-radiation", "Tome": "fa-book-sparkles", "Quiver": "fa-arrow-right", "Arrow": "fa-arrow"
+"Helmet": "fa-helmet-battle", 
+"Chestplate": "fa-tshirt", 
+"Gauntlets": "fa-hand-fist", 
+"Boots": "fa-boots",
+"Shield": "fa-shield-halved", 
+"Sword": "fa-sword", 
+"Axe": "fa-axe", 
+"Bow": "fa-bow-arrow",
+"Staff": "fa-staff", 
+"Dagger": "fa-knife", 
+"Spear": "fa-pitchfork", 
+"Wand": "fa-wand",
+"Ring": "fa-ring", 
+"Amulet": "fa-gem", 
+"Cloak": "fa-cloak", 
+"Gloves": "fa-hand",
+"Belt": "fa-belt", 
+"Greaves": "fa-shield", 
+"Pauldrons": "fa-shield", 
+"Crown": "fa-crown",
+"Orb": "fa-circle", 
+"Tome": "fa-book", 
+"Quiver": "fa-quiver", 
+"Arrow": "fa-arrow"
 };
 
 const tierList = ["E", "D", "C", "B", "A", "S", "SSR", "SSR++"];
@@ -1317,7 +1408,6 @@ const quotes = [
 const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-// ========== FUNGSI GENERATE KARAKTER ==========
 function generateItems() {
 const count = randomInt(4, 7);
 const items = [];
@@ -1398,10 +1488,8 @@ if (tierRank[item.tier] > tierRank[highest]) highest = item.tier;
 return highest;
 }
 
-// Fungsi untuk menghitung persentase stat (untuk level indicator)
 function getStatPercentage(value) {
 if (value === '∞') return 100;
-// Normalisasi ke 0-100% (max 9999)
 return Math.min(100, Math.floor((value / 9999) * 100));
 }
 
@@ -1446,9 +1534,7 @@ const area = document.getElementById('resultArea');
 let itemsHtml = '';
 char.items.forEach(item => {
 let tierClass = 'tier-' + item.tier.replace('+', 'plus');
-// Cari ikon berdasarkan tipe item, fallback ke fa-box
 const iconClass = itemIconMap[item.type] || 'fa-box';
-// Tambahkan data-type untuk styling warna ikon
 itemsHtml += `<span class="item-chip" data-type="${item.type}"><i class="fas ${iconClass}"></i> <span class="tier-badge ${tierClass}">${item.tier}</span> ${item.name}</span>`;
 });
 
@@ -1481,7 +1567,6 @@ ${displayValue}
 const highestTier = getHighestTier(char.items);
 const tierClassForContainer = 'highest-tier-' + highestTier.replace('+', 'plus');
 
-// Tambahkan animasi masuk
 const containerHtml = `
 <div class="character-container ${tierClassForContainer} isekai-enter">
 <div class="avatar-section">
@@ -1495,7 +1580,6 @@ onerror="this.src='https://api.dicebear.com/9.x/adventurer/svg?seed=fallback${ra
 <span class="role-badge"><i class="fas fa-shield-alt"></i> ${char.role}</span>
 <span class="job-badge"><i class="fas fa-briefcase"></i> ${char.jobClass}</span>
 </div>
-<!-- Voice button dihapus -->
 </div>
 <div class="stats">
 <div class="stat-line">
@@ -1530,105 +1614,27 @@ ${statsHtml}
 
 area.innerHTML = containerHtml;
 
-// Hapus animasi setelah selesai
 setTimeout(() => {
 const container = document.querySelector('.character-container');
-if (container) {
-container.classList.remove('isekai-enter');
-}
-}, 800);
+if (container) container.classList.remove('isekai-enter');
+}, 1200);
 }
 
 // ========== PARTICLES.JS SETUP ==========
 particlesJS('particles-js', {
 particles: {
-number: {
-value: 120,
-density: {
-enable: true,
-value_area: 800
-}
-},
-color: {
-value: ['#ff3a3a', '#ffcc00', '#8bb4ff', '#ff6acb', '#b48bff']
-},
-shape: {
-type: ['circle', 'triangle', 'star'],
-stroke: {
-width: 0,
-color: '#000000'
-},
-polygon: {
-nb_sides: 5
-}
-},
-opacity: {
-value: 0.5,
-random: true,
-anim: {
-enable: true,
-speed: 1,
-opacity_min: 0.1,
-sync: false
-}
-},
-size: {
-value: 4,
-random: true,
-anim: {
-enable: true,
-speed: 3,
-size_min: 0.1,
-sync: false
-}
-},
-line_linked: {
-enable: true,
-distance: 150,
-color: '#ffaa33',
-opacity: 0.3,
-width: 1
-},
-move: {
-enable: true,
-speed: 2,
-direction: 'none',
-random: true,
-straight: false,
-out_mode: 'out',
-bounce: false,
-attract: {
-enable: true,
-rotateX: 600,
-rotateY: 1200
-}
-}
+number: { value: 80, density: { enable: true, value_area: 800 } },
+color: { value: ['#ff3a3a', '#ffcc00', '#8bb4ff', '#ff6acb', '#b48bff'] },
+shape: { type: ['circle', 'triangle'], stroke: { width: 0 } },
+opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+line_linked: { enable: true, distance: 150, color: '#ffaa33', opacity: 0.2, width: 1 },
+move: { enable: true, speed: 1.5, direction: 'none', random: true, straight: false, out_mode: 'out' }
 },
 interactivity: {
 detect_on: 'canvas',
-events: {
-onhover: {
-enable: true,
-mode: 'grab'
-},
-onclick: {
-enable: true,
-mode: 'push'
-},
-resize: true
-},
-modes: {
-grab: {
-distance: 140,
-line_linked: {
-opacity: 0.8,
-color: '#ffaa33'
-}
-},
-push: {
-particles_nb: 5
-}
-}
+events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
+modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
 },
 retina_detect: true
 });
@@ -1642,14 +1648,14 @@ const isekaiBtn = document.getElementById('isekaiBtn');
 
 detailBtn.addEventListener('click', () => {
 const rect = detailBtn.getBoundingClientRect();
-createSpellEffect(rect.left + rect.width/2, rect.top + rect.height/2, '#8bb4ff', 10);
+createSpellEffect(rect.left + rect.width/2, rect.top + rect.height/2, '#8bb4ff', 8);
 generatorPage.classList.add('hidden');
 detailsPage.classList.remove('hidden');
 });
 
 backBtn.addEventListener('click', () => {
 const rect = backBtn.getBoundingClientRect();
-createSpellEffect(rect.left + rect.width/2, rect.top + rect.height/2, '#e5b073', 10);
+createSpellEffect(rect.left + rect.width/2, rect.top + rect.height/2, '#e5b073', 8);
 detailsPage.classList.add('hidden');
 generatorPage.classList.remove('hidden');
 });
@@ -1659,29 +1665,65 @@ const rect = e.target.getBoundingClientRect();
 const centerX = rect.left + rect.width/2;
 const centerY = rect.top + rect.height/2;
 
-// Efek portal besar
+// Simulasi proses verifikasi sidik jari
+isekaiBtn.classList.add('scanning');
+isekaiBtn.innerHTML = `
+<div class="fingerprint-icon">
+<i class="fas fa-spinner fa-pulse"></i>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+</div>
+<span>Memindai Sidik Jari...</span>
+`;
+
+setTimeout(() => {
+isekaiBtn.classList.remove('scanning');
+isekaiBtn.classList.add('verified');
+isekaiBtn.innerHTML = `
+<div class="fingerprint-icon">
+<i class="fas fa-check-circle"></i>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+</div>
+<span>Verifikasi Berhasil!</span>
+<i class="fas fa-arrow-right"></i>
+`;
+
+// Efek portal besar setelah verifikasi
 triggerIsekaiPortal();
 
-// Efek partikel dari tombol
+// Efek partikel spiral
 for (let i = 0; i < 40; i++) {
 setTimeout(() => {
-createSpellEffect(
-centerX + (Math.random() - 0.5) * 150,
-centerY + (Math.random() - 0.5) * 150,
-`hsl(${Math.random() * 60 + 300}, 100%, 60%)`,
-2
-);
-}, i * 30);
+const angle = (i / 40) * Math.PI * 2;
+const radius = 120;
+const x = centerX + Math.cos(angle) * radius;
+const y = centerY + Math.sin(angle) * radius;
+createSpellEffect(x, y, `hsl(${i * 9 + 300}, 100%, 60%)`, 2);
+}, i * 25);
 }
 
-// Animasi tombol
-isekaiBtn.classList.add('portal-pressed');
+// Kembalikan tombol ke keadaan normal setelah efek
 setTimeout(() => {
-isekaiBtn.classList.remove('portal-pressed');
-}, 500);
+isekaiBtn.classList.remove('verified');
+isekaiBtn.innerHTML = `
+<div class="fingerprint-icon">
+<i class="fas fa-fingerprint"></i>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+<div class="ripple-circle"></div>
+</div>
+<span>Tempel Jempol untuk Isekai</span>
+<i class="fas fa-arrow-right"></i>
+`;
+}, 2000);
+
+}, 1000);
 
 const area = document.getElementById('resultArea');
-area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Sabar nyed ... lagi dibikinin jadi apa :v</div>`;
+area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Membuka portal isekai...</div>`;
 
 try {
 const character = await generateCharacter();
@@ -1704,14 +1746,12 @@ area.innerHTML = `<div class="loading">Yahh... gagal deh bikin karakternya. Refr
 }
 });
 
-// Anime.js animations for floating elements
 anime({
 targets: '.floating-element',
-translateX: function() { return anime.random(-50, 50); },
-translateY: function() { return anime.random(-50, 50); },
+translateX: function() { return anime.random(-40, 40); },
+translateY: function() { return anime.random(-40, 40); },
 scale: function() { return anime.random(0.8, 1.2); },
-rotate: function() { return anime.random(-45, 45); },
-duration: 3000,
+duration: 4000,
 easing: 'easeInOutQuad',
 loop: true,
 direction: 'alternate'
