@@ -1377,31 +1377,31 @@ const biodataTemplates = [
 "{name} tuh seorang {role} dari antah berantah. {subjek} pernah tuh {peristiwa} dan sekarang maunya sih {tujuan}. Ya begitulah Hehe.",
 "Jadi dulu banget, {name} cuma {role} biasaa. Tapi abis {peristiwa}, {subjek} dapet job class {jobClass} nih dan mulai petualangannya. Pokoknya kece abis dah nih orang!",
 "{name} dikenal sebagai {role} yang begituwlah. Konon katanya sih {subjek} pernah {peristiwa}. Sekarang levelnya dah {level} aja dan bawa {itemCount} item andalannya tuh. Gacor abiss dah!",
-"Sebuah takdir membawa {name} menjadi seorang {jobClass} dengan role {role}. {subjek} suka ngomong gini: '{quote}'.",
+"Sebuah takdir membawa {name} menjadi seorang {jobClass} dengan role {role}. {subjek} suka ngomong  nih: '{quote}'.",
 "Di dunia isekai ini, {name}重生 (lahir ulang) sebagai {role}. Masa lalunya kelam broo: {peristiwa}. Sekarang sih {subjek} lagi ngejar buat {tujuan}. OK Gas terus dah pokoknya!",
 "Dengan senjata andalan {item1}, {name} udah bertarung dengan banyak orang hebat. {subjek} adalah satu-satunya {role} yang bisa make {jobClass}. Etdahh, saktii abiss!",
 "{name} (levelnya {level}) punya mimpi buat jadi yang terbaik bagi dirinya. Sebagai seorang {role}, {subjek} keliaran kesana-sini sambil nyari arti hidup yang sebenarnya. Filosofi juga nih orang.",
-"Katanya sih,si {name} titisan dewa. {subjek} lahir nih dengan kekuatan {jobClass} dan memilih sebagai {role}. Tapi ya gitulah, {subjek} harus ngadapin berbagai cobaan berat. Awwhu ngasinnya.",
+"Katanya sih,si {name} titisan dewa. {subjek} lahir nih dengan kekuatan {jobClass} dan memilih sebagai {role}. Tapi ya gitulah, {subjek} harus ngadapin berbagai cobaan berat. Awwwhuu kasiaan.",
 "Bro, kenalin nih {name}. Dia tuh {role} level {level} dengan job {jobClass}. Pernah nih {peristiwa}, now {tujuan}. Pokoknya kocak nih beliau!",
-"{name} nih orangnya low profile bangett sih, tapi aslinya {role} si CEO yang lagi menyamar. Pas lagi {peristiwa} tuh, tiba-tiba ngebet banget tuhh buat dapetin job {jobClass}. ada katanya: '{quote}'"
+"{name} nih orang diam-diam cupu,ternyata suhu,aslinya si {role}  ,CEO yang lagi nyamar. Pas lagi {peristiwa} tuh, tiba-tiba ngebet banget tuhh ngidam dapetin job {jobClass}. ada katanya: '{quote}'"
 ];
 
 const peristiwaList = [
-"nyelametin putri dari Maho-Sama", "dikhianatin sama sahabatnya sendiri", "nemu barang legendaris",
-"terjebak di dungeon 100 tahun", "bangkitin kekuatan Raja Iblis", "kehilangan banyak orang terdekat gegara peranglah",
-"belajar sihir dari sesepuh roh kuno", "jelajahi bannyak ribuan dunia", "dikutuk jadi CEO abadi", "ngorbanin banyak hal demi cinta,Eiiuhh nih orang",
-"nyasar di hutan anta-berantah", "kepleset masuk ke portal isekai tempat idaman para wibu", "makan buah iblis misterius kayak diOne Piece", "nge-charge HP kelewatan etdahh"
+"nyelametin putri dari Maho-Sama", "ditikung sama temennya sendiri lah", "nemu artefak kuno dirumahnya Sahroni",
+"kejebak dikunciin temennya didalem kelas", "bangkitin kekuatan Raja Iblis", "kehilangan banyak orang terdekat gegara peranglah",
+"belajar sihir dari sesepuh roh kuno", "jelajahi bannyak ribuan dunia", "dikutuk jadi CEO miskin", "ngorbanin banyak hal demi cinta lah,Eiiuhh juga nih orang",
+"nyasar di tempat anta-berantah", "kepleset masuk ke portal isekai tempat idaman para wibu", "makan buah iblis misterius kayak diOne Piece", "Kepeleset depen orang yang ditaksir,Wkwk"
 ];
 
 const tujuanList = [
 "cari arti hidup", "balas dendam gajelas", "nemuin One Piece versi dunia ini", "lindungin yang lebih lemah",
-"jadi raja iblis", "ciptain dunia tanpa Koruptor", "kumpulin semua artefak", "capai level ∞",
-"jadi YouTuber terkenal lah", "nikahin waifunya sih", "bikin circle sendiri"
+"jadi raja iblis", "ciptain dunia tanpa Koruptor", "kumpulin semua artefak dari jaman Majapahit", "capai level atau stats ∞",
+"jadi Tiktoker terkenal lah", "dapetin hati si crushnya sih", "bikin circlenya sendiri"
 ];
 
 const quotes = [
-"Selama masih ada sebatang rokok akan kuhadapi dunia ini!", "Cuma nih barang yang bisa ngubah takdir gue.", "Kekuatan sejati datengnya dari hati yang tuluss eaa.",
-"Isekai itu kesempatan kedua, bro kelass.", "Jangan remehin role gweh luh!", "Level cuma angka, dingin tetapi tidak kejam.",
+"Selama masih ada sebatang rokok,akan kuhadapi dunia ini!", "Sorong-papan tarik-duit,buah keranji dalam perahu,disuruh nyawit dia gas kan,disuruh tengok rakyat dia tak tahu.", "Kekuatan sejati datengnya dari hati yang tuluss,eaa.",
+"My Trip,My Adventureee!!.", "By one dek?", "Level cuma angka, dingin tetapi tidak kejam,cihuyy.",
 "Senggol dongg!", "Yodaktau, gas ajalah!", "Tier gue rendah? yang penting tetap hedon."
 ];
 
@@ -1723,7 +1723,7 @@ isekaiBtn.innerHTML = `
 }, 1000);
 
 const area = document.getElementById('resultArea');
-area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Membuka portal isekai...</div>`;
+area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Sabar nyed ... lagi dibikinin karakter lu :v</div>`;
 
 try {
 const character = await generateCharacter();
@@ -1736,7 +1736,7 @@ area.innerHTML = `<div class="loading">Gagal memanggil karakter. Coba lagi.</div
 
 window.addEventListener('load', async () => {
 const area = document.getElementById('resultArea');
-area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Sabar nyed ... lagi dibikinin jadi apa :v</div>`;
+area.innerHTML = `<div class="loading"><i class="fas fa-spinner fa-pulse"></i> Sabar nyed ... lagi dibikinin karakter lu :v</div>`;
 try {
 const initialChar = await generateCharacter();
 renderCharacter(initialChar);
